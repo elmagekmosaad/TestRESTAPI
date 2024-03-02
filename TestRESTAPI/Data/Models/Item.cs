@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace TestRESTAPI.Data.Models
 {
@@ -14,6 +16,12 @@ namespace TestRESTAPI.Data.Models
         public byte[]? Image { get; set; }
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public virtual Category Category { get; set; }
+        public bool isActive { get; set; }
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public virtual ICollection<OrderItem> orderItems{ get;}
     }
 }

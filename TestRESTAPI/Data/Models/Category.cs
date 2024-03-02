@@ -10,6 +10,6 @@ namespace TestRESTAPI.Data.Models
         [Required(ErrorMessage ="please set name")]
         public string Name { get; set; }
         public string? notes { get; set; }
-        public List<Item> Items { get; set; }
+        public virtual List<Item> Items { get; set; }
     }
 }

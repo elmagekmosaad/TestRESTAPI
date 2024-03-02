@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
 using TestRESTAPI.Data;
 using TestRESTAPI.Data.Models;
 using TestRESTAPI.Models;
-using static Azure.Core.HttpHeader;
 
 namespace TestRESTAPI.Controllers
 {

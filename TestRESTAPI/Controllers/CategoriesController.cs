@@ -26,7 +26,7 @@ namespace TestRESTAPI.Controllers
             var cats = await _db.Categories.ToListAsync();
             return Ok(cats);
         }
-        
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCategories(int id)
         {
@@ -41,7 +41,7 @@ namespace TestRESTAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> AddCategory(string category)
         {
-            Category c = new () { Name = category };
+            Category c = new() { Name = category };
             await _db.Categories.AddAsync(c);
             _db.SaveChanges();
             return Ok(c);
@@ -50,8 +50,8 @@ namespace TestRESTAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateCategory(Category category)
         {
-          var c = await _db.Categories.SingleOrDefaultAsync(x => x.Id == category.Id);
-            
+            var c = await _db.Categories.SingleOrDefaultAsync(x => x.Id == category.Id);
+
             if (c == null)
             {
                 return NotFound($"Category Id {category.Id} not exists ");
@@ -62,17 +62,17 @@ namespace TestRESTAPI.Controllers
         }
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> 
+        public async Task<IActionResult>
             UpdateCategoryPatch([FromBody] JsonPatchDocument<Category> category, [FromRoute] int id)
         {
-          var c = await _db.Categories.SingleOrDefaultAsync(x => x.Id == id);
-            
+            var c = await _db.Categories.SingleOrDefaultAsync(x => x.Id == id);
+
             if (c == null)
             {
                 return NotFound($"Category Id {id} not exists ");
             }
             category.ApplyTo(c);
-           await _db.SaveChangesAsync();
+            await _db.SaveChangesAsync();
             return Ok(c);
         }
 

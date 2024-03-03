@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Http.Connections;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TestRESTAPI.Data;
+using TestRESTAPI.Data.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,7 @@ builder.Services.AddDbContext<AppDbContext>(op =>
     op.UseLazyLoadingProxies()
       .UseSqlServer(builder.Configuration.GetConnectionString("myCon")));
 
+builder.Services.AddIdentity<AppUser,IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
 //ConnectionOptions options = new();
 //builder.Services.AddConnections(options);
 
